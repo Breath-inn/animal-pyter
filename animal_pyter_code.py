@@ -20,6 +20,7 @@ light_gray = (102,102,102)
 purple = (123,104,238)
 light_purple = (147,112,219)
 coral = (255,189,174)
+
 #화면크기
 size = [1400,700] # diplay size
 display_width = size[0]
@@ -27,10 +28,12 @@ display_height = size[1]
 screen=pygame.display.set_mode(size)
 player_width = display_width / 12
 player_height = display_height/3
+
 #파일위치
 current_path = os.path.dirname(__file__)
 image_path = os.path.join(current_path, "images") 
 sound_path = os.path.join(current_path, "sounds")
+
 #이미지로드
 gamestart = pygame.transform.scale(pygame.image.load(os.path.join(image_path, "gamestart.png")),(display_width,display_height))
 uidstart1 = pygame.transform.scale(pygame.image.load(os.path.join(image_path, "1puid.png")),(display_width,display_height))
@@ -42,11 +45,13 @@ game_manual_eng = pygame.transform.scale(pygame.image.load(os.path.join(image_pa
 game_manual_kor = pygame.transform.scale(pygame.image.load(os.path.join(image_path, "game_manual_kor.png")),(display_width,display_height))
 logo = pygame.image.load(os.path.join(image_path, "logo.png"))
 check = pygame.image.load(os.path.join(image_path, "check.png"))
+
 #필살기사진
 satk_fox=pygame.transform.scale(pygame.image.load(os.path.join(image_path, "satk_fox.png")),(150,100))
 satk_bear=pygame.transform.scale(pygame.image.load(os.path.join(image_path, "satk_bear.png")),(150,100))
 satk_cat=pygame.transform.scale(pygame.image.load(os.path.join(image_path, "satk_cat.png")),(150,100))
 satk_dog=pygame.transform.scale(pygame.image.load(os.path.join(image_path, "satk_dog.png")),(150,100))
+
 #캐릭터선택사진
 select_dog = pygame.image.load(os.path.join(image_path, "select_dog.png"))
 select_bear = pygame.image.load(os.path.join(image_path, "select_bear.png"))
@@ -58,6 +63,7 @@ p1_select_kor = pygame.transform.scale(pygame.image.load(os.path.join(image_path
 p2_select_kor = pygame.transform.scale(pygame.image.load(os.path.join(image_path, "p2selectanimal_kor.png")),(display_width,display_height))
 option_select_eng = pygame.transform.scale(pygame.image.load(os.path.join(image_path, "option_select_eng.png")),(display_width,display_height))
 option_select_kor = pygame.transform.scale(pygame.image.load(os.path.join(image_path, "option_select_kor.png")),(display_width,display_height))
+
 #커스텀사진
 iscustom_kor = pygame.transform.scale(pygame.image.load(os.path.join(image_path, "iscustom_kor.png")),(display_width,display_height))
 iscustom_eng = pygame.transform.scale(pygame.image.load(os.path.join(image_path, "iscustom_eng.png")),(display_width,display_height))
@@ -65,6 +71,7 @@ custom_eng = pygame.transform.scale(pygame.image.load(os.path.join(image_path, "
 custom_kor = pygame.transform.scale(pygame.image.load(os.path.join(image_path, "custom_kor.png")),(display_width,display_height))
 mode_select_eng = pygame.image.load(os.path.join(image_path, "mode_select_eng.png"))
 mode_select_kor = pygame.image.load(os.path.join(image_path, "mode_select_kor.png"))
+
 #5판3선용 승리 박스
 wincheckbox=pygame.transform.scale(pygame.image.load(os.path.join(image_path, "checkedbox.png")),(40,60))
 winbox=pygame.transform.scale(pygame.image.load(os.path.join(image_path, "winbox.png")),(120,60))
@@ -75,13 +82,22 @@ ck2=False#1p핸디캡
 ck3=False#2p핸디캡
 ck4=False#무한필살기
 ck5=False#연습모드
+
 #5판3선승제시 p1 p2 승리 횟수
 p1win=0
 p2win=0
+
 #jump구현을 위한 질량값
 MASS =2
+
 #폰트
 game_font = pygame.font.Font('DungGeunMo.ttf', 150)
+smallfont = pygame.font.Font('DungGeunMo.ttf', 25)
+small2font = pygame.font.Font('DungGeunMo.ttf', 35)
+medfont = pygame.font.Font('DungGeunMo.ttf', 50)
+largefont = pygame.font.Font('DungGeunMo.ttf', 80)
+extralargefont = pygame.font.Font('DungGeunMo.ttf', 250)
+
 #커스터마이징 
 weapon1_color = 'none'
 punch1_color = 'none'
@@ -101,6 +117,7 @@ damage2_point =0
 
 p1_custom_atk=0
 p2_custom_atk=0
+
 # 사운드 파일
 weapon_sound = pygame.mixer.Sound(os.path.join(sound_path,'weapon.wav'))
 jump_sound = pygame.mixer.Sound(os.path.join(sound_path,'jump.wav'))
@@ -124,18 +141,12 @@ effect_option = 0.9
 lan_option = 'korean'
 back_option = 'city'
 
-#폰트
-smallfont = pygame.font.Font('DungGeunMo.ttf', 25)
-small2font = pygame.font.Font('DungGeunMo.ttf', 35)
-medfont = pygame.font.Font('DungGeunMo.ttf', 50)
-largefont = pygame.font.Font('DungGeunMo.ttf', 80)
-extralargefont = pygame.font.Font('DungGeunMo.ttf', 250)
-
 #FPS
 clock=pygame.time.Clock()
 clock.tick(60)
 p1_animal=[0]
 p2_animal=[0]
+
 #p1,p2 포인트 값, id init
 p1_point=0
 p2_point=0
@@ -145,6 +156,7 @@ text1p=""
 text2p = ""
 p1_total_point = p1_point - weapon1_point - punch1_point - damage1_point
 p2_total_point = p2_point - weapon2_point - punch2_point - damage2_point   
+
 #캡션
 title="Animal pyter"
 pygame.display.set_caption(title)
@@ -315,6 +327,7 @@ def Option():
             if click[0] == 1:
                 click_sound.play()
                 optionselect=False
+
         #배경음 설정
         elif x-220 + w > cur[0] > x-220 and y-30 + h > cur[1] > y-30:
             if click[0] == 1:
@@ -336,6 +349,7 @@ def Option():
                 tick_sound.play()
                 bgm_option = 0.9   
                 pygame.mixer.music.set_volume(0.9)
+
         #효과음 설정
         elif x-220 + w > cur[0] > x-220 and y+100 + h > cur[1] > y+100:
             if click[0] == 1:
@@ -353,6 +367,7 @@ def Option():
             if click[0] == 1:
                 tick_sound.play()
                 effect_option = 0.9
+
         #언어 설정
         elif x-220 + w+90 > cur[0] > x-220 and y+220 + h > cur[1] > y+220:
             if click[0] == 1:
@@ -362,6 +377,7 @@ def Option():
             if click[0] == 1:
                 tick_sound.play()
                 lan_option = 'english'      
+                
         # 배경화면 설정
         elif x-220 + w+90 > cur[0] > x-220 and y+340 + h > cur[1] > y+340:
             if click[0] == 1:

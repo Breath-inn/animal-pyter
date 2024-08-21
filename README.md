@@ -1,6 +1,6 @@
 ## 1.	게임 설명 
 
-Animal Pyter는 Python의 Pygame을 이용해 개발한 2인용 동물 격투 게임이다.
+Animal Pyter는 Python의 Pygame 라이브러리를 이용해 개발한 2인용 동물 격투 게임이다.
 Pygame을 사용했음을 나타내기 위해 Pyter의 Py는 Pygame에서 유래했습니다.
 
 ![image](https://github.com/user-attachments/assets/17138e01-4d9c-4a8c-a0ad-8c49b973280b)
